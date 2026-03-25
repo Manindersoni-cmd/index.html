@@ -1,118 +1,688 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>La Auténtica Michoacana</title>
-
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff8f2;
+    :root {
+      --pink: #d6217a;
+      --magenta: #9c1156;
+      --deep: #6b0038;
+      --light-pink: #fce4f1;
+      --cream: #fff8f2;
+      --green: #3d8c3d;
+      --gold: #e8b84b;
+      --white: #ffffff;
+      --dark: #1a0a10;
     }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
 
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: #6b0038;
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.85rem 3rem;
+      background:rgba(107,0,56,.95);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,.1);
     }
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.1em;color:var(--white);text-decoration:none}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{font-size:.79rem;font-weight:500;color:rgba(255,255,255,.78);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{background:var(--gold);color:#5c2e00;font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1.3rem;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,184,75,.5)}
 
-    .logo {
-      width: 100px;
-      mix-blend-mode: multiply; /* 🔥 removes white edge look */
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      background:linear-gradient(135deg,#6b0038 0%,#9c1156 35%,#d6217a 68%,#e8549c 100%);
+      position:relative;display:flex;align-items:center;overflow:hidden;
     }
-
-    .menu {
-      max-width: 900px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 72% 48%,rgba(255,255,255,.13) 0%,transparent 58%);pointer-events:none}
+    .deco{position:absolute;border-radius:50%;pointer-events:none}
+    .deco-a{width:480px;height:480px;top:-140px;left:-110px;background:rgba(255,255,255,.05)}
+    .deco-b{width:260px;height:260px;bottom:-90px;left:36%;background:rgba(107,0,56,.55)}
+    .deco-c{width:160px;height:160px;top:22%;right:9%;background:rgba(232,184,75,.18)}
+    .hero-inner{
+      position:relative;z-index:2;width:100%;max-width:1320px;
+      margin:0 auto;padding:8rem 3rem 5rem;
+      display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;
     }
+    .badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:.32rem .95rem;font-size:.71rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--white);margin-bottom:1.6rem;backdrop-filter:blur(6px);animation:fadeUp .6s ease both}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.8s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.6)}}
+    h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.6rem,6.5vw,6.4rem);line-height:.91;color:var(--white);letter-spacing:.025em;text-shadow:0 4px 40px rgba(80,0,30,.4);animation:fadeUp .7s .1s ease both}
+    h1 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:87%;color:var(--gold)}
+    .hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.72);margin-top:.55rem;animation:fadeUp .7s .18s ease both}
+    .hero-desc{margin-top:1.7rem;font-size:.97rem;line-height:1.8;color:rgba(255,255,255,.8);max-width:490px;font-weight:300;animation:fadeUp .7s .26s ease both}
+    .hero-desc strong{color:#ffd6ec;font-weight:600}
+    .tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.5rem;animation:fadeUp .7s .34s ease both}
+    .tag{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.27rem .82rem;font-size:.73rem;font-weight:500;color:var(--white);letter-spacing:.04em;transition:all .2s;cursor:default}
+    .tag:hover{background:rgba(255,255,255,.22);border-color:var(--gold)}
+    .ctas{display:flex;align-items:center;gap:1rem;margin-top:2.4rem;animation:fadeUp .7s .42s ease both;flex-wrap:wrap}
+    .btn-p{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);color:var(--magenta);font-weight:700;font-size:.86rem;letter-spacing:.05em;text-transform:uppercase;padding:.88rem 2.1rem;border-radius:999px;text-decoration:none;box-shadow:0 8px 32px rgba(80,0,30,.32);transition:transform .22s,box-shadow .22s}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(80,0,30,.48)}
+    .btn-s{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--white);font-weight:500;font-size:.86rem;letter-spacing:.05em;text-transform:uppercase;padding:.88rem 1.9rem;border-radius:999px;border:1.5px solid rgba(255,255,255,.48);text-decoration:none;transition:all .22s}
+    .btn-s:hover{border-color:var(--gold);background:rgba(255,255,255,.08);transform:translateY(-2px)}
+    .proof{display:flex;align-items:center;gap:1.2rem;margin-top:2.2rem;animation:fadeUp .7s .5s ease both}
+    .avs{display:flex}
+    .av{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.6);margin-left:-8px;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;color:var(--white)}
+    .av:first-child{margin-left:0}
+    .a1{background:#9c1156}.a2{background:#3d8c3d}.a3{background:#c0185f}.a4{background:#e8b84b;color:#5c2e00}
+    .proof-txt{font-size:.78rem;color:rgba(255,255,255,.72);line-height:1.5}
+    .proof-txt strong{color:var(--white)}
+    .stars{color:var(--gold);font-size:.85rem}
+    .hero-right{position:relative;display:flex;justify-content:center;align-items:center;animation:fadeIn .9s .3s ease both}
+    .food-card{width:430px;height:500px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:2.5rem;backdrop-filter:blur(14px);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 32px 80px rgba(80,0,30,.38),inset 0 1px 0 rgba(255,255,255,.28)}
+    .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:2rem 2rem 1rem}
+    .ebox{width:78px;height:78px;background:rgba(255,255,255,.14);border-radius:1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem;border:1px solid rgba(255,255,255,.18);transition:transform .25s;animation:fi 4s ease-in-out infinite}
+    .ebox:nth-child(2){animation-delay:.4s}.ebox:nth-child(3){animation-delay:.8s}.ebox:nth-child(4){animation-delay:1.2s}.ebox:nth-child(5){animation-delay:1.6s}.ebox:nth-child(6){animation-delay:2s}
+    .ebox:hover{transform:scale(1.13) rotate(-4deg)}
+    .card-lbl{font-family:'Playfair Display',serif;font-style:italic;color:rgba(255,255,255,.75);font-size:1rem;padding:1rem 2rem 2rem;text-align:center}
+    .fbadge{position:absolute;border-radius:1rem;padding:.55rem 1rem;box-shadow:0 8px 28px rgba(80,0,30,.25);display:flex;align-items:center;gap:.45rem;font-size:.78rem;font-weight:700;animation:fb 3.5s ease-in-out infinite}
+    .fbadge.tr{top:-1rem;right:-1.5rem;background:var(--white);color:var(--magenta)}
+    .fbadge.mr{right:-2.2rem;top:42%;background:var(--green);color:var(--white);animation-delay:1s}
+    .fbadge.bl{bottom:1.8rem;left:-2.2rem;background:var(--gold);color:#5c2e00;animation-delay:1.8s}
+    @keyframes fi{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @keyframes fb{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.38);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;z-index:10}
+    .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:sl 1.6s ease-in-out infinite}
+    @keyframes sl{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(1);transform-origin:bottom;opacity:0}}
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    /* SECTIONS */
+    .sec-head{text-align:center;padding:0 2rem;margin-bottom:3.5rem}
+    .eyebrow{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:.7rem}
+    .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,4.5vw,4rem);letter-spacing:.03em;color:var(--magenta)}
+    .sec-sub{font-family:'Playfair Display',serif;font-style:italic;color:#999;margin-top:.35rem;font-size:.97rem}
+    .divider{width:56px;height:3px;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:999px;margin:1.1rem auto 0}
+
+    /* FOOD */
+    #food{background:var(--cream);padding:6rem 0}
+    .menu-wrap{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+    .cat-block{margin-bottom:4.5rem}
+    .cat-heading{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:.06em;color:var(--magenta);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem}
+    .cat-heading::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,rgba(214,33,122,.25),transparent)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1.3rem}
+
+    /* cards */
+    .card{background:var(--white);border-radius:1.4rem;overflow:hidden;box-shadow:0 2px 18px rgba(156,17,86,.07);border:1px solid rgba(214,33,122,.09);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(156,17,86,.17)}
+    .card-img{width:100%;height:152px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;flex-shrink:0;background:linear-gradient(135deg,#fce4f1,#fdf0f8)}
+    .card-body{padding:1rem 1.2rem 1.25rem;flex:1;display:flex;flex-direction:column}
+    .pop{display:inline-block;background:var(--gold);color:#5c2e00;font-size:.61rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:.17rem .52rem;border-radius:999px;margin-bottom:.35rem;align-self:flex-start}
+    .c-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.04em;color:var(--magenta);line-height:1.1}
+    .c-sub{font-size:.72rem;color:#bbb;font-style:italic;margin-top:.1rem}
+    .c-desc{font-size:.78rem;color:#888;line-height:1.55;margin-top:.45rem;flex:1}
+    .c-foot{display:flex;align-items:flex-end;justify-content:space-between;margin-top:.9rem;gap:.5rem}
+    .c-price{font-family:'Bebas Neue',sans-serif;font-size:1.52rem;letter-spacing:.04em;color:var(--pink)}
+    .c-sizes{display:flex;flex-direction:column;gap:.06rem}
+    .c-sz{font-size:.71rem;font-weight:600;color:#888;white-space:nowrap}
+    .c-sz b{color:var(--pink);font-size:.88rem}
+    .add{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--magenta);border:none;color:var(--white);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+    .add:hover{background:var(--pink);transform:scale(1.12)}
+
+    /* DRINKS */
+    #drinks{
+      background:linear-gradient(140deg,#6b0038 0%,#9c1156 35%,#d6217a 68%,#e05498 100%);
+      padding:6rem 0;position:relative;overflow:hidden;
     }
+    #drinks::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 75%,rgba(255,255,255,.1) 0%,transparent 55%);pointer-events:none}
+    #drinks .eyebrow{color:var(--gold)}
+    #drinks .sec-title{color:var(--white)}
+    #drinks .sec-sub{color:rgba(255,255,255,.6)}
+    #drinks .divider{background:linear-gradient(90deg,var(--gold),rgba(255,255,255,.25))}
+    #drinks .cat-heading{color:var(--white)}
+    #drinks .cat-heading::after{background:linear-gradient(90deg,rgba(255,255,255,.28),transparent)}
+    .dcard{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:1.4rem;backdrop-filter:blur(10px);overflow:hidden;transition:transform .25s,background .25s;display:flex;flex-direction:column}
+    .dcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.2)}
+    .dcard .card-img{background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.04))}
+    .dcard .c-name{color:var(--white)}
+    .dcard .c-sub{color:rgba(255,255,255,.5)}
+    .dcard .c-desc{color:rgba(255,255,255,.68)}
+    .dcard .c-price{color:var(--gold)}
+    .dcard .c-sz{color:rgba(255,255,255,.55)}
+    .dcard .c-sz b{color:var(--gold)}
+    .dcard .add{background:rgba(255,255,255,.25)}
+    .dcard .add:hover{background:var(--white);color:var(--magenta)}
+    .dcard .pop{background:rgba(255,255,255,.2);color:var(--white)}
 
-    .card-img {
-      height: 150px;
+    footer{background:var(--dark);padding:3.5rem 2rem;text-align:center;color:rgba(255,255,255,.38);font-size:.8rem}
+    footer strong{color:var(--gold)}
+    footer p+p{margin-top:.5rem}
+
+    @media(max-width:960px){
+      .hero-inner{grid-template-columns:1fr;padding-top:9rem}
+      .hero-right{margin-top:2.5rem}
+      .food-card{width:320px;height:370px}
+      nav{padding:.85rem 1.5rem}
+      .nav-links{display:none}
     }
-
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-body {
-      padding: 10px;
-    }
-
-    .price {
-      color: #d6217a;
-      font-weight: bold;
+    @media(max-width:560px){
+      .grid{grid-template-columns:1fr 1fr}
+      .card-img{height:110px;font-size:2.5rem}
+      .hero-inner{padding:8rem 1.5rem 4rem}
+      .menu-wrap{padding:0 1.2rem}
     }
   </style>
 </head>
-
 <body>
 
 <nav>
-  <img src="logo.png" class="logo" alt="Logo">
+  <a class="nav-logo" href="#">La Auténtica Michoacana</a>
+  <div class="nav-links">
+    <a href="#food">Food</a>
+    <a href="#drinks">Drinks &amp; Treats</a>
+    <a href="#">About</a>
+    <a href="#">Locations</a>
+  </div>
+  <a class="nav-cta" href="#food">Order Now</a>
 </nav>
 
-<h1 style="text-align:center;">Menu</h1>
-
-<div class="menu">
-
-  <div class="card">
-    <div class="card-img">
-      <img src="images/torta.jpg" alt="Torta">
+<!-- HERO -->
+<section class="hero">
+  <div class="deco deco-a"></div><div class="deco deco-b"></div><div class="deco deco-c"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="badge"><span class="dot"></span>Freshly Made Every Day</div>
+      <h1>Bold<br/>Flavors.<br/><em>Real</em> Roots.</h1>
+      <p class="hero-sub">Authentic Mexican street food &amp; artisanal treats</p>
+      <p class="hero-desc">From sizzling <strong>Quesabirrias con consomé</strong> and loaded <strong>Tortas</strong> to signature <strong>Fresas Supremas</strong>, creamy <strong>Dubai Sundaes</strong>, and icy <strong>Dragon Fruit Refreshers.</strong></p>
+      <div class="tags">
+        <span class="tag">🌮 Tacos</span><span class="tag">🥪 Tortas</span><span class="tag">🧀 Quesabirria</span><span class="tag">🍓 Fresas</span><span class="tag">🌯 Burritos</span><span class="tag">🍟 Nachos</span><span class="tag">🥤 Refreshers</span><span class="tag">🍦 Nieves</span>
+      </div>
+      <div class="ctas">
+        <a href="#food" class="btn-p">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          View Full Menu
+        </a>
+        <a href="#drinks" class="btn-s">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+          Drinks &amp; Treats
+        </a>
+      </div>
+      <div class="proof">
+        <div class="avs"><div class="av a1">M</div><div class="av a2">J</div><div class="av a3">A</div><div class="av a4">L</div></div>
+        <div class="proof-txt"><div class="stars">★★★★★</div><div><strong>1,200+ happy customers</strong> — rated 5 stars</div></div>
+      </div>
     </div>
-    <div class="card-body">
-      <h3>Tortas</h3>
-      <p class="price">$12.00</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img">
-      <img src="images/tacos.jpg" alt="Tacos">
-    </div>
-    <div class="card-body">
-      <h3>Tacos</h3>
-      <p class="price">$3.00</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img">
-      <img src="images/quesabirria.jpg" alt="Quesabirria">
-    </div>
-    <div class="card-body">
-      <h3>Quesabirria</h3>
-      <p class="price">$14.99</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img">
-      <img src="images/fresas.jpg" alt="Fresas">
-    </div>
-    <div class="card-body">
-      <h3>Fresas</h3>
-      <p class="price">$12.00</p>
+    <div class="hero-right">
+      <div class="food-card">
+        <div class="egrid">
+          <div class="ebox">🌮</div><div class="ebox">🍓</div><div class="ebox">🥤</div>
+          <div class="ebox">🧀</div><div class="ebox">🥪</div><div class="ebox">🍦</div>
+        </div>
+        <p class="card-lbl">Add your hero food photo here</p>
+      </div>
+      <div class="fbadge tr">⚡ Fan Favorite</div>
+      <div class="fbadge mr">🌿 Fresh Daily</div>
+      <div class="fbadge bl">🏆 #1 in Town</div>
     </div>
   </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</section>
 
-</div>
+<!-- FOOD MENU -->
+<section id="food">
+  <div class="sec-head">
+    <span class="eyebrow">What We Serve</span>
+    <h2 class="sec-title">Our Food Menu</h2>
+    <p class="sec-sub">Something bold for every craving</p>
+    <div class="divider"></div>
+  </div>
+  <div class="menu-wrap">
 
+    <div class="cat-block">
+      <h3 class="cat-heading">🌮 Mexican Classics</h3>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-img">🥪</div>
+          <div class="card-body">
+            <span class="pop">⭐ Popular</span>
+            <div class="c-name">Tortas</div>
+            <div class="c-desc">Mexican-style pressed sandwich stuffed with your choice of meat, fresh veggies &amp; salsas.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🧀</div>
+          <div class="card-body">
+            <span class="pop">🔥 Best Seller</span>
+            <div class="c-name">Quesabirrias</div>
+            <div class="c-sub">Con consomé</div>
+            <div class="c-desc">Crispy birria-stuffed quesadillas served with rich consomé dipping broth on the side.</div>
+            <div class="c-foot"><span class="c-price">$14.99</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🫓</div>
+          <div class="card-body">
+            <div class="c-name">Quesadillas</div>
+            <div class="c-desc">Griddled flour tortilla loaded with melted cheese and savory fillings.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🌮</div>
+          <div class="card-body">
+            <div class="c-name">Tacos</div>
+            <div class="c-desc">Street-style corn tortilla tacos with cilantro, white onion &amp; house salsa.</div>
+            <div class="c-foot"><span class="c-price">$3.00</span><span style="font-size:.71rem;color:#bbb;margin-bottom:2px">each</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🌯</div>
+          <div class="card-body">
+            <div class="c-name">Burritos</div>
+            <div class="c-desc">Large flour tortilla wrapped around rice, beans, your choice of meat &amp; fresh toppings.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥙</div>
+          <div class="card-body">
+            <div class="c-name">Huarache</div>
+            <div class="c-desc">Thick oval masa base topped with beans, meat, shredded lettuce, crema &amp; salsa verde.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🫓</div>
+          <div class="card-body">
+            <div class="c-name">Sopes</div>
+            <div class="c-sub">Asada · Pollo</div>
+            <div class="c-desc">Thick masa rounds fried golden, topped with beans, your choice of protein, cheese &amp; crema.</div>
+            <div class="c-foot"><span class="c-price">$5.25</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🌽</div>
+          <div class="card-body">
+            <div class="c-name">Tacos Dorados</div>
+            <div class="c-sub">Pollo · Papas</div>
+            <div class="c-desc">Crispy golden fried rolled tacos topped with shredded cabbage, crema &amp; salsa.</div>
+            <div class="c-foot"><span class="c-price">$10.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <h3 class="cat-heading">🍟 Sides &amp; Snacks</h3>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-img">🍿</div>
+          <div class="card-body">
+            <span class="pop">⭐ Popular</span>
+            <div class="c-name">Nachos</div>
+            <div class="c-desc">Loaded tortilla chips smothered in cheese, jalapeños, beans, crema &amp; fresh toppings.</div>
+            <div class="c-foot"><span class="c-price">$13.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥔</div>
+          <div class="card-body">
+            <div class="c-name">Papas Asada</div>
+            <div class="c-desc">Seasoned potatoes piled high with carne asada, melted cheese &amp; salsas.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🧅</div>
+          <div class="card-body">
+            <div class="c-name">Aros de Cebolla</div>
+            <div class="c-sub">Onion Rings</div>
+            <div class="c-desc">Crispy golden-fried onion rings — perfect for sharing or snacking.</div>
+            <div class="c-foot"><span class="c-price">$6.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🍟</div>
+          <div class="card-body">
+            <div class="c-name">Asada Fries</div>
+            <div class="c-desc">Crispy fries loaded with carne asada, cheese, crema &amp; fresh pico.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Reg. <b>$10.50</b></span>
+                <span class="c-sz">Grande <b>$13.50</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🌭</div>
+          <div class="card-body">
+            <div class="c-name">Salchipapas</div>
+            <div class="c-desc">Fries topped with sliced sausage, cheese sauce &amp; signature salsas.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Reg. <b>$9.50</b></span>
+                <span class="c-sz">Grande <b>$13.00</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥗</div>
+          <div class="card-body">
+            <div class="c-name">Ensalada de Pollo</div>
+            <div class="c-sub">Chicken Salad</div>
+            <div class="c-desc">Fresh salad with tender grilled chicken, crisp veggies &amp; house dressing.</div>
+            <div class="c-foot"><span class="c-price">$9.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <h3 class="cat-heading">🍗 Chicken &amp; Sandwiches</h3>
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-img">🧀</div>
+          <div class="card-body">
+            <div class="c-name">Palitos de Queso</div>
+            <div class="c-sub">Cheese Sticks</div>
+            <div class="c-desc">Golden fried cheese sticks served with marinara dipping sauce.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">4 pc. <b>$5.99</b></span>
+                <span class="c-sz">6 pc. <b>$8.95</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🍗</div>
+          <div class="card-body">
+            <div class="c-name">Nuggets de Pollo</div>
+            <div class="c-sub">Chicken Nuggets</div>
+            <div class="c-desc">Crispy breaded chicken nuggets — a crowd-pleaser for all ages.</div>
+            <div class="c-foot"><span class="c-price">$8.95</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🍗</div>
+          <div class="card-body">
+            <div class="c-name">Tiras de Pollo</div>
+            <div class="c-sub">Chicken Tenders con Papas</div>
+            <div class="c-desc">Crispy chicken tenders served with fries &amp; your choice of dipping sauce.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">3 pc. <b>$9.50</b></span>
+                <span class="c-sz">5 pc. <b>$13.00</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥪</div>
+          <div class="card-body">
+            <span class="pop">🔥 Hot Pick</span>
+            <div class="c-name">Buffalo Ranch Crispy Chicken Sandwich</div>
+            <div class="c-desc">Crispy chicken with spicy buffalo ranch sauce on a toasted bun.</div>
+            <div class="c-foot"><span class="c-price">$13.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥪</div>
+          <div class="card-body">
+            <div class="c-name">BBQ Crispy Chicken Sandwich</div>
+            <div class="c-desc">Smoky BBQ sauce meets crispy chicken on a toasted bun with melted cheese.</div>
+            <div class="c-foot"><span class="c-price">$13.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥪</div>
+          <div class="card-body">
+            <div class="c-name">Bacon Ranch Crispy Chicken Sandwich</div>
+            <div class="c-desc">Crispy chicken layered with crispy bacon strips &amp; cool creamy ranch.</div>
+            <div class="c-foot"><span class="c-price">$13.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🥪</div>
+          <div class="card-body">
+            <div class="c-name">Sandwiches de Jamón</div>
+            <div class="c-sub">Ham Sandwich</div>
+            <div class="c-desc">Pressed ham &amp; cheese sandwich served with fries on the side.</div>
+            <div class="c-foot"><span class="c-price">$12.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">🍔</div>
+          <div class="card-body">
+            <div class="c-name">Burger</div>
+            <div class="c-desc">Juicy beef patty with lettuce, tomato, cheese &amp; a side of fries.</div>
+            <div class="c-foot"><span class="c-price">$12.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DRINKS & TREATS -->
+<section id="drinks">
+  <div class="sec-head">
+    <span class="eyebrow">Drinks &amp; Sweet Treats</span>
+    <h2 class="sec-title">Fresas, Nieves &amp; Más</h2>
+    <p class="sec-sub">Michoacán-style desserts &amp; refreshing drinks</p>
+    <div class="divider"></div>
+  </div>
+  <div class="menu-wrap">
+
+    <div class="cat-block">
+      <h3 class="cat-heading">🍓 Fresas &amp; Specialty Cups</h3>
+      <div class="grid">
+
+        <div class="dcard">
+          <div class="card-img">🍓</div>
+          <div class="card-body">
+            <span class="pop">⭐ Signature</span>
+            <div class="c-name">Fresas Supremas</div>
+            <div class="c-desc">Fresh strawberries loaded with cream, chamoy, chili &amp; our secret toppings.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">S <b>$11.50</b></span>
+                <span class="c-sz">M <b>$12.50</b></span>
+                <span class="c-sz">L <b>$13.50</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🍓✨</div>
+          <div class="card-body">
+            <span class="pop">🔥 Trending</span>
+            <div class="c-name">Fresas Dubai</div>
+            <div class="c-desc">Strawberries Dubai-style with pistachio cream, kataifi pastry &amp; gold chocolate drizzle.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">S <b>$12.50</b></span>
+                <span class="c-sz">M <b>$13.50</b></span>
+                <span class="c-sz">L <b>$14.50</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🥒</div>
+          <div class="card-body">
+            <div class="c-name">Pepino Split</div>
+            <div class="c-desc">Fresh cucumber split &amp; dressed with chamoy, tajín, lime &amp; seasonal fruit.</div>
+            <div class="c-foot"><span class="c-price">$10.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🍧</div>
+          <div class="card-body">
+            <div class="c-name">Rusa</div>
+            <div class="c-desc">Classic Michoacana-style fruit cup with cream, chamoy &amp; chili powder.</div>
+            <div class="c-foot"><span class="c-price">$8.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🍜</div>
+          <div class="card-body">
+            <div class="c-name">Tosti Maruchan</div>
+            <div class="c-desc">A bold savory-sweet snack — Maruchan ramen noodles on a toasted base with all the fixin's.</div>
+            <div class="c-foot"><span class="c-price">$12.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <h3 class="cat-heading">✨ Dubai Specials</h3>
+      <div class="grid">
+
+        <div class="dcard">
+          <div class="card-img">🍨✨</div>
+          <div class="card-body">
+            <span class="pop">🔥 New</span>
+            <div class="c-name">Dubai Sundae</div>
+            <div class="c-desc">Ice cream sundae inspired by Dubai chocolate — topped with pistachio cream, kataifi &amp; gold drizzle.</div>
+            <div class="c-foot"><span class="c-price">$9.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🥐✨</div>
+          <div class="card-body">
+            <span class="pop">🔥 New</span>
+            <div class="c-name">Dubai Churro</div>
+            <div class="c-desc">Crispy churros filled with Dubai-style pistachio cream &amp; drizzled in chocolate.</div>
+            <div class="c-foot"><span class="c-price">$9.50</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cat-block">
+      <h3 class="cat-heading">🥤 Drinks &amp; Frappes</h3>
+      <div class="grid">
+
+        <div class="dcard">
+          <div class="card-img">☕🍫</div>
+          <div class="card-body">
+            <span class="pop">⭐ Popular</span>
+            <div class="c-name">Dubai Frappe</div>
+            <div class="c-desc">Blended frappe with Dubai chocolate pistachio flavor — rich, creamy &amp; totally indulgent.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">S <b>$8.50</b></span>
+                <span class="c-sz">M <b>$9.50</b></span>
+                <span class="c-sz">L <b>$12.00</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">🐉🥤</div>
+          <div class="card-body">
+            <span class="pop">🌟 Fan Fave</span>
+            <div class="c-name">Dragon Fruit Refreshers</div>
+            <div class="c-desc">Vibrant dragon fruit drink — sweet, refreshing &amp; beautifully colorful.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">S <b>$5.00</b></span>
+                <span class="c-sz">M <b>$6.00</b></span>
+                <span class="c-sz">L <b>$7.00</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">⚡🍹</div>
+          <div class="card-body">
+            <div class="c-name">Energy Freeze</div>
+            <div class="c-desc">Icy frozen slushie blended with Monster Energy — the ultimate bold pick-me-up.</div>
+            <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p><strong>La Auténtica Michoacana</strong></p>
+  <p>Bold flavors. Real roots. Made with love every single day.</p>
+  <p style="margin-top:1.2rem;font-size:.72rem">© 2025 La Auténtica Michoacana. All rights reserved.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.add').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.textContent = '✓';
+      this.style.background = '#3d8c3d';
+      setTimeout(() => { this.textContent = '+'; this.style.background = ''; }, 1000);
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.card, .dcard').forEach((c, i) => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(26px)';
+    const base = parseFloat(c.style.transitionDuration) || 0;
+    c.style.transition = `opacity .5s ${(i % 4) * 0.07}s ease, transform .5s ${(i % 4) * 0.07}s ease, box-shadow .25s, background .25s`;
+    io.observe(c);
+  });
+</script>
 </body>
 </html>
