@@ -8,10 +8,10 @@
   <!--
   ╔══════════════════════════════════════════════════════════╗
   ║              IMAGE SETUP INSTRUCTIONS                   ║
-  ║                                                         ║
+  ║                                                          ║
   ║  1. Create a folder called "images/" next to this file  ║
   ║  2. Add your logo:  images/logo.png                     ║
-  ║  3. Add food photos using the filenames below:           ║
+  ║  3. Add food photos using the filenames below:          ║
   ║                                                          ║
   ║  FOOD MENU                                               ║
   ║    images/tortas.png                                     ║
@@ -48,6 +48,36 @@
   ║    images/dubai-frappe.png                               ║
   ║    images/dragon-fruit-refresher.png                     ║
   ║    images/energy-freeze.png                              ║
+  ║    images/acai-bowl.png                                  ║
+  ║                                                          ║
+  ║  SIDES (NEW)                                             ║
+  ║    images/papas-fritas.png                               ║
+  ║    images/esquite.png                                    ║
+  ║    images/tosti-esquite.png                              ║
+  ║    images/tostilocos.png                                 ║
+  ║    images/chicharron-preparado.png                       ║
+  ║    images/hot-cheetos-con-queso.png                      ║
+  ║                                                          ║
+  ║  FRESAS NEW ITEMS                                        ║
+  ║    images/mangoneada.png                                 ║
+  ║    images/bionico.png                                    ║
+  ║    images/fresas-con-crema.png                           ║
+  ║    images/vaso-de-fruta.png                              ║
+  ║    images/pepinos-locos.png                              ║
+  ║                                                          ║
+  ║  DRINKS NEW ITEMS                                        ║
+  ║    images/frappe.png                                     ║
+  ║    images/agua-fresca.png                                ║
+  ║    images/malteada.png                                   ║
+  ║    images/raspado.png                                    ║
+  ║    images/diablito.png                                   ║
+  ║                                                          ║
+  ║  NIEVES & PALETAS (NEW)                                  ║
+  ║    images/paletas.png                                    ║
+  ║    images/1-bola.png                                     ║
+  ║    images/2-bolas.png                                    ║
+  ║    images/3-bolas.png                                    ║
+  ║    images/yogurt.png                                     ║
   ║                                                          ║
   ║  TIP: Use .png for transparent backgrounds,             ║
   ║       .jpg for regular photos. Either works fine.       ║
@@ -75,7 +105,7 @@
     nav {
       position:fixed; top:0; left:0; right:0; z-index:300;
       display:grid; grid-template-columns:1fr auto 1fr;
-      align-items:center; padding:1rem 2.5rem;
+      align-items:center; padding:.6rem 2.5rem;
       background:rgba(255,248,240,0);
       transition:background .35s, padding .35s, box-shadow .35s;
     }
@@ -97,11 +127,11 @@
 
     .nav-center { display:flex; flex-direction:column; align-items:center; gap:.2rem; }
     .nav-logo-img {
-      width:78px; height:78px; object-fit:contain;
+      width:156px; height:156px; object-fit:contain;
       transition:width .3s, height .3s;
       filter:drop-shadow(0 2px 10px rgba(214,33,122,.3));
     }
-    nav.scrolled .nav-logo-img { width:54px; height:54px; }
+    nav.scrolled .nav-logo-img { width:108px; height:108px; }
     /* Fallback wordmark if logo.png not found */
     .nav-wordmark {
       font-family:'Bebas Neue',sans-serif;
@@ -135,7 +165,7 @@
     .hd2 { width:320px;height:320px;bottom:-100px;right:-80px;background:rgba(107,0,56,.5); }
     .hd3 { width:200px;height:200px;bottom:10%;left:8%;background:rgba(232,184,75,.14); }
 
-    .hero-content { position:relative; z-index:2; max-width:840px; padding:0 2rem; }
+    .hero-content { position:relative; z-index:2; padding:0; }
     .hero-eyebrow {
       display:inline-flex; align-items:center; gap:.5rem;
       background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3);
@@ -385,6 +415,63 @@
     .order-btn { display:inline-block; background:var(--gold); color:#3d1e00; font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; padding:.5rem 1.2rem; border-radius:999px; text-decoration:none; transition:transform .2s; }
     .order-btn:hover { transform:translateY(-1px); }
 
+
+    /* ── sub-options ── */
+    .sub-opts { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.5rem; }
+    .sub-opt {
+      font-size:.68rem; font-weight:500; color:var(--magenta);
+      background:var(--blush); border:1px solid rgba(214,33,122,.18);
+      border-radius:999px; padding:.18rem .6rem; letter-spacing:.02em;
+      cursor:default; transition:background .18s, color .18s;
+    }
+    .sub-opt:hover { background:var(--magenta); color:var(--white); }
+    .dcard .sub-opt { color:rgba(255,255,255,.85); background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.25); }
+    .dcard .sub-opt:hover { background:rgba(255,255,255,.3); color:var(--white); }
+
+
+    /* ── HERO SPINNING LOGO ── */
+    .hero-inner {
+      position:relative; z-index:2;
+      width:100%; max-width:1320px;
+      margin:0 auto; padding:8rem 3rem 5rem;
+      display:grid; grid-template-columns:1fr 1fr;
+      align-items:center; gap:2rem;
+    }
+    .hero-logo-side {
+      position:relative;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      perspective:900px;
+    }
+    .hero-spin-wrap {
+      position:relative;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .hero-logo-spin {
+      width:420px; height:420px; max-width:90vw;
+      object-fit:contain;
+      opacity:0.30;
+      animation:spin3d 8s linear infinite;
+      transform-style:preserve-3d;
+      filter:drop-shadow(0 0 40px rgba(214,33,122,.25));
+    }
+    @keyframes spin3d {
+      0%   { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+    /* Reflection */
+    .hero-logo-reflection {
+      width:420px; height:210px; max-width:90vw;
+      object-fit:contain;
+      object-position:top;
+      opacity:0.10;
+      transform: scaleY(-1);
+      animation:spin3d 8s linear infinite;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
+      margin-top:-4px;
+      filter:blur(1px);
+    }
+
     /* ══ RESPONSIVE ══ */
     @media(max-width:960px){
       nav { grid-template-columns:1fr; justify-items:center; padding:.9rem 1.5rem; }
@@ -431,7 +518,8 @@
   <div class="hd hd1"></div>
   <div class="hd hd2"></div>
   <div class="hd hd3"></div>
-  <div class="hero-content">
+  <div class="hero-inner">
+  <div class="hero-content" style="position:relative;z-index:2;max-width:680px;">
     <div class="hero-eyebrow"><span class="edot"></span>Freshly Made Every Day</div>
     <h1 class="hero-title">La Auténtica<br/><em>Michoacana</em></h1>
     <p class="hero-sub">Bold flavors. Real roots. Made with love.</p>
@@ -456,6 +544,16 @@
       </a>
     </div>
   </div>
+  <!-- Spinning logo right side -->
+  <div class="hero-logo-side">
+    <div class="hero-spin-wrap">
+      <img src="images/logo.png" class="hero-logo-spin" alt="La Auténtica Michoacana logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='none'"/>
+      <img src="images/logo.png" class="hero-logo-reflection" alt=""
+           onerror="this.style.display='none'"/>
+    </div>
+  </div>
+  </div><!-- /hero-inner -->
   <div class="hero-scroll"><div class="sbar"></div>Scroll</div>
 </section>
 
@@ -480,31 +578,31 @@
   <div class="pb-slot">
     <img src="images/band-tacos.png" alt="" onerror="this.style.display='none'"/>
     <div class="pb-overlay"></div>
-    <span class="pb-emoji"></span>
+    <span class="pb-emoji">🌮</span>
     <span class="pb-label">Tacos &amp; Birria</span>
   </div>
   <div class="pb-slot">
     <img src="images/band-fresas.png" alt="" onerror="this.style.display='none'"/>
     <div class="pb-overlay"></div>
-    <span class="pb-emoji"></span>
+    <span class="pb-emoji">🍓</span>
     <span class="pb-label">Fresas Supremas</span>
   </div>
   <div class="pb-slot">
     <img src="images/band-tortas.png" alt="" onerror="this.style.display='none'"/>
     <div class="pb-overlay"></div>
-    <span class="pb-emoji"></span>
+    <span class="pb-emoji">🥪</span>
     <span class="pb-label">Tortas</span>
   </div>
   <div class="pb-slot">
     <img src="images/band-dubai.png" alt="" onerror="this.style.display='none'"/>
     <div class="pb-overlay"></div>
-    <span class="pb-emoji"></span>
+    <span class="pb-emoji">✨</span>
     <span class="pb-label">Dubai Specials</span>
   </div>
   <div class="pb-slot">
     <img src="images/band-drinks.png" alt="" onerror="this.style.display='none'"/>
     <div class="pb-overlay"></div>
-    <span class="pb-emoji"></span>
+    <span class="pb-emoji">🥤</span>
     <span class="pb-label">Drinks</span>
   </div>
 </div>
@@ -535,13 +633,20 @@
             <span class="pop">⭐ Popular</span>
             <div class="c-name">Tortas</div>
             <div class="c-desc">Mexican-style pressed sandwich stuffed with your choice of meat, fresh veggies &amp; salsas.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">De Asada</span>
+              <span class="sub-opt">De Pierna</span>
+              <span class="sub-opt">De Pollo</span>
+              <span class="sub-opt">De Jamón</span>
+              <span class="sub-opt">De Jamón y Salchicha</span>
+            </div>
             <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-img">
-            <img src="images/quesabirria.png" class="item-photo" alt="Quesabirrias" onerror="this.setAttribute('data-broken','1')"/>
+            <img src="images/quesabirrias.png" class="item-photo" alt="Quesabirrias" onerror="this.setAttribute('data-broken','1')"/>
             <span class="emoji-fb">🧀</span>
           </div>
           <div class="card-body">
@@ -561,6 +666,12 @@
           <div class="card-body">
             <div class="c-name">Quesadillas</div>
             <div class="c-desc">Griddled flour tortilla loaded with melted cheese and savory fillings.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">De Queso</span>
+              <span class="sub-opt">De Asada</span>
+              <span class="sub-opt">De Pierna</span>
+              <span class="sub-opt">De Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
           </div>
         </div>
@@ -573,6 +684,10 @@
           <div class="card-body">
             <div class="c-name">Tacos</div>
             <div class="c-desc">Street-style corn tortilla tacos with cilantro, white onion &amp; house salsa.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">De Asada</span>
+              <span class="sub-opt">De Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$3.00</span><span style="font-size:.7rem;color:#bbb">ea.</span><button class="add">+</button></div>
           </div>
         </div>
@@ -585,6 +700,11 @@
           <div class="card-body">
             <div class="c-name">Burritos</div>
             <div class="c-desc">Large flour tortilla wrapped around rice, beans, your choice of meat &amp; fresh toppings.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">De Asada</span>
+              <span class="sub-opt">De Pierna</span>
+              <span class="sub-opt">De Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
           </div>
         </div>
@@ -616,13 +736,16 @@
 
         <div class="card">
           <div class="card-img">
-            <img src="images/taco-dorados.png" class="item-photo" alt="Tacos Dorados" onerror="this.setAttribute('data-broken','1')"/>
+            <img src="images/tacos-dorados.png" class="item-photo" alt="Tacos Dorados" onerror="this.setAttribute('data-broken','1')"/>
             <span class="emoji-fb">🌽</span>
           </div>
           <div class="card-body">
             <div class="c-name">Tacos Dorados</div>
-            <div class="c-sub">Pollo · Papas</div>
             <div class="c-desc">Crispy golden fried rolled tacos topped with shredded cabbage, crema &amp; salsa.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">De Asada</span>
+              <span class="sub-opt">De Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$10.00</span><button class="add">+</button></div>
           </div>
         </div>
@@ -644,6 +767,11 @@
             <span class="pop">⭐ Popular</span>
             <div class="c-name">Nachos</div>
             <div class="c-desc">Loaded tortilla chips smothered in cheese, jalapeños, beans, crema &amp; fresh toppings.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">Con Queso</span>
+              <span class="sub-opt">Con Asada</span>
+              <span class="sub-opt">Con Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$13.50</span><button class="add">+</button></div>
           </div>
         </div>
@@ -655,7 +783,11 @@
           </div>
           <div class="card-body">
             <div class="c-name">Papas Asada</div>
-            <div class="c-desc">Seasoned potatoes piled high with carne asada, melted cheese &amp; salsas.</div>
+            <div class="c-desc">Seasoned potatoes piled high with your choice of protein, melted cheese &amp; salsas.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">Sin Carne</span>
+              <span class="sub-opt">Con Pollo</span>
+            </div>
             <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
           </div>
         </div>
@@ -707,6 +839,94 @@
             <div class="c-sub">Chicken Salad</div>
             <div class="c-desc">Fresh salad with tender grilled chicken, crisp veggies &amp; house dressing.</div>
             <div class="c-foot"><span class="c-price">$9.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/papas-fritas.png" class="item-photo" alt="Papas Fritas" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍟</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Papas Fritas</div>
+            <div class="c-sub">French Fries</div>
+            <div class="c-desc">Crispy golden fries, perfectly salted &amp; ready for dipping.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Reg. <b>See Menu</b></span>
+                <span class="c-sz">Large <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/esquite.png" class="item-photo" alt="Esquite" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🌽</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Esquite</div>
+            <div class="c-desc">Mexican street corn in a cup with mayo, cheese, lime &amp; chili.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">Regular</span>
+              <span class="sub-opt">Con Hot Cheetos</span>
+            </div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/tosti-esquite.png" class="item-photo" alt="Tosti Esquite" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🌽🍞</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Tosti Esquite</div>
+            <div class="c-desc">Esquite served on a toasted base, loaded with all the classic toppings.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/tostilocos.png" class="item-photo" alt="Tostilocos" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🌶️</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Tostilocos</div>
+            <div class="c-desc">Tostitos loaded with jícama, cucumber, chamoy, lime, chili &amp; gummies.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/chicharron-preparado.png" class="item-photo" alt="Chicharrón Preparado" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🐷</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Chicharrón Preparado</div>
+            <div class="c-desc">Crispy chicharrón topped with crema, salsa, lime &amp; fresh toppings.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+        <div class="card">
+          <div class="card-img">
+            <img src="images/hot-cheetos-con-queso.png" class="item-photo" alt="Hot Cheetos con Queso" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🔥</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Hot Cheetos con Queso</div>
+            <div class="c-desc">Crunchy Hot Cheetos drizzled with warm nacho cheese sauce — bold &amp; addictive.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
           </div>
         </div>
 
@@ -826,7 +1046,7 @@
 
 <!-- ══════════ PROMO BANNER ══════════ -->
 <div class="promo">
-  <h2>Now Serving Dubai-Style Specials 🌟 Açai bowl 🫐</h2>
+  <h2>Now Serving Dubai-Style Specials 🌟 &amp; Açaí Bowls 🫐</h2>
   <p>Fresas Dubai · Dubai Churro · Dubai Sundae · Dubai Frappe</p>
   <a href="#drinks">See All Specials →</a>
 </div>
@@ -910,6 +1130,82 @@
           </div>
         </div>
 
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/mangoneada.png" class="item-photo" alt="Mangoneada" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🥭</span>
+          </div>
+          <div class="card-body">
+            <span class="pop">🔥 Popular</span>
+            <div class="c-name">Mangoneada</div>
+            <div class="c-desc">Fresh mango with chamoy, tajín &amp; lime — sweet, spicy &amp; tangy.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/bionico.png" class="item-photo" alt="Bionico" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍓🍌</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Bionico</div>
+            <div class="c-desc">Fresh mixed fruit topped with crema, shredded coconut, granola &amp; raisins.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/fresas-con-crema.png" class="item-photo" alt="Fresas con Crema" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍓🥛</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Fresas con Crema</div>
+            <div class="c-desc">Fresh strawberries smothered in sweet Mexican crema — simple &amp; delicious.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/vaso-de-fruta.png" class="item-photo" alt="Vaso de Fruta" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍉</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Vaso de Fruta</div>
+            <div class="c-desc">Cup of fresh seasonal fruit with lime, chili &amp; chamoy on the side.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/pepinos-locos.png" class="item-photo" alt="Pepinos Locos" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🥒🌶️</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Pepinos Locos</div>
+            <div class="c-desc">Spiralized cucumber loaded with chamoy, hot sauce, tajín &amp; lime juice.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -974,6 +1270,10 @@
             <span class="pop">🌟 Fan Fave</span>
             <div class="c-name">Dragon Fruit Refreshers</div>
             <div class="c-desc">Vibrant dragon fruit drink — sweet, refreshing &amp; beautifully colorful.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">Mango</span>
+              <span class="sub-opt">Strawberry</span>
+            </div>
             <div class="c-foot"><div class="c-sizes"><span class="c-sz">S <b>$5.00</b></span><span class="c-sz">M <b>$6.00</b></span><span class="c-sz">L <b>$7.00</b></span></div><button class="add">+</button></div>
           </div>
         </div>
@@ -987,6 +1287,194 @@
             <div class="c-name">Energy Freeze</div>
             <div class="c-desc">Icy frozen slushie blended with Monster Energy — the ultimate bold pick-me-up.</div>
             <div class="c-foot"><span class="c-price">$12.00</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/acai-bowl.png" class="item-photo" alt="Açaí Bowl" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🫐</span>
+          </div>
+          <div class="card-body">
+            <span class="pop">🌟 New</span>
+            <div class="c-name">Açaí Bowl</div>
+            <div class="c-desc">Thick blended açaí base topped with fresh fruit, granola &amp; honey drizzle.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/frappe.png" class="item-photo" alt="Frappe" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">☕🧋</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Frappe</div>
+            <div class="c-desc">Blended iced frappe in a variety of flavors — creamy, bold &amp; refreshing.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/agua-fresca.png" class="item-photo" alt="Agua Fresca" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🥤</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Agua Fresca</div>
+            <div class="c-desc">Refreshing house-made fruit agua fresca — light, sweet &amp; ice cold.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/malteada.png" class="item-photo" alt="Malteada" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🥤🍦</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Malteada</div>
+            <div class="c-sub">Milkshake</div>
+            <div class="c-desc">Thick creamy milkshake blended with your choice of flavor.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/raspado.png" class="item-photo" alt="Raspado" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🧊🍓</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Raspado</div>
+            <div class="c-desc">Mexican shaved ice with your choice of fruit syrup &amp; toppings.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/diablito.png" class="item-photo" alt="Diablito" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">😈🥤</span>
+          </div>
+          <div class="card-body">
+            <span class="pop">🌶️ Spicy</span>
+            <div class="c-name">Diablito</div>
+            <div class="c-desc">A spicy-sweet drink with chamoy, hot sauce &amp; your choice of flavor.</div>
+            <div class="c-foot">
+              <div class="c-sizes">
+                <span class="c-sz">Sm <b>See Menu</b></span>
+                <span class="c-sz">Med <b>See Menu</b></span>
+                <span class="c-sz">Lg <b>See Menu</b></span>
+              </div>
+              <button class="add">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ── Nieves & Paletas ── -->
+    <div class="cat-block">
+      <h3 class="cat-heading">🍦 Nieves &amp; Paletas</h3>
+      <div class="grid">
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/paletas.png" class="item-photo" alt="Paletas" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍡</span>
+          </div>
+          <div class="card-body">
+            <span class="pop">🍦 Classic</span>
+            <div class="c-name">Paletas</div>
+            <div class="c-desc">Handcrafted Mexican ice pops in a variety of fruit &amp; cream flavors.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/1-bola.png" class="item-photo" alt="1 Bola" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍦</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">1 Bola</div>
+            <div class="c-sub">Single Scoop</div>
+            <div class="c-desc">One scoop of your choice of Michoacana-style nieve in a cup or cone.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/2-bolas.png" class="item-photo" alt="2 Bolas" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍨</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">2 Bolas</div>
+            <div class="c-sub">Double Scoop</div>
+            <div class="c-desc">Two scoops of your favorite nieve flavors in a cup or cone.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/3-bolas.png" class="item-photo" alt="3 Bolas" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🍨</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">3 Bolas</div>
+            <div class="c-sub">Triple Scoop</div>
+            <div class="c-desc">Three generous scoops of nieve — mix and match your favorite flavors.</div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="card-img">
+            <img src="images/yogurt.png" class="item-photo" alt="Yogurt" onerror="this.setAttribute('data-broken','1')"/>
+            <span class="emoji-fb">🥛</span>
+          </div>
+          <div class="card-body">
+            <div class="c-name">Yogurt</div>
+            <div class="c-desc">Creamy yogurt topped with fresh fruit, granola &amp; honey.</div>
+            <div class="sub-opts">
+              <span class="sub-opt">Small</span>
+              <span class="sub-opt">Medium</span>
+            </div>
+            <div class="c-foot"><span class="c-price">See Menu</span><button class="add">+</button></div>
           </div>
         </div>
 
@@ -1015,9 +1503,9 @@
     </div>
     <div class="footer-col">
       <h4>Visit Us</h4>
-      <p>📍 Bakersfield, CA</p>
+      <p>📍 207 S K St, Tulare, CA 93274</p>
       <p>📞 (555) 000-0000</p>
-      <p>🕐 Mon–Sun: 10am – 9pm</p>
+      <p>🕐 Online Orders: 11:00 AM – 8:45 PM</p>
       <a href="#food" class="order-btn" style="margin-top:.8rem">Order Online</a>
     </div>
   </div>
